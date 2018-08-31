@@ -13,7 +13,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     var manager:CBCentralManager? = nil
     var mainPeripheral:CBPeripheral? = nil
     var mainCharacteristic:CBCharacteristic? = nil
-    
+    let step:Float=1 // If you want UISlider to snap to steps by 10
+
     let BLEService = "DFB0"
     let BLECharacteristic = "DFB1"
     
@@ -25,6 +26,49 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         manager = CBCentralManager(delegate: self, queue: nil);
         
         customiseNavigationBar()
+        addSliders(300, color: UIColor.green)
+        addSliders(380, color: UIColor.red)
+        addSliders(460, color: UIColor.blue)
+
+    }
+    
+    func addSliders(_ yPos: Int, color: UIColor) {
+        
+        let mySlider = UISlider(frame:CGRect(x: 10, y: yPos, width: 300, height: 20))
+        mySlider.minimumValue = 0
+        mySlider.maximumValue = 100
+        mySlider.isContinuous = true
+        mySlider.tintColor = color
+        
+        mySlider.addTarget(self, action: #selector(MainViewController.sliderValueDidChange(_:)), for: .valueChanged)
+        
+        let toggle = UISwitch(frame: CGRect(x: Int(mySlider.frame.maxX)+20, y: yPos, width: 20, height: 20))
+        toggle.tintColor = color
+        toggle.addTarget(self, action: #selector(MainViewController.switchStateDidChange(_:)), for: .valueChanged)
+        self.view.addSubview(toggle)
+        self.view.addSubview(mySlider)
+    }
+    
+    func sliderValueDidChange(_ sender:UISlider!)
+    {
+        print("Slider value changed")
+        
+        // Use this code below only if you want UISlider to snap to values step by step
+        let roundedStepValue = round(sender.value / step) * step
+        sender.value = roundedStepValue
+        
+        print("Slider step value \(Int(roundedStepValue))")
+    }
+    
+    
+    func switchStateDidChange(_ sender:UISwitch!)
+    {
+        if (sender.isOn == true){
+            print("UISwitch state is now ON")
+        }
+        else{
+            print("UISwitch state is now Off")
+        }
     }
     
     func customiseNavigationBar () {
@@ -75,7 +119,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     @IBAction func sendButtonPressed(_ sender: AnyObject) {
-        let helloWorld = "Hello World!"
+        let helloWorld = "Hello"
         let dataToSend = helloWorld.data(using: String.Encoding.utf8)
         
         if (mainPeripheral != nil) {
@@ -192,8 +236,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         } else if (characteristic.uuid.uuidString == BLECharacteristic) {
             //data recieved
             if(characteristic.value != nil) {
-                let stringValue = String(data: characteristic.value!, encoding: String.Encoding.utf8)!
-            
+                let stringValue = String(data: characteristic.value!, encoding: String.Encoding.utf8)
+                print(stringValue)
                 recievedMessageText.text = stringValue
             }
         }

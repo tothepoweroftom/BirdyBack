@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0246FDF0213988700074BCAB /* VerticalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246FDEF213988700074BCAB /* VerticalSlider.swift */; };
+		0246FDF2213989920074BCAB /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246FDF1213989920074BCAB /* SliderViewController.swift */; };
 		785098841D365ADD00976091 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785098831D365ADD00976091 /* AppDelegate.swift */; };
 		785098861D365ADD00976091 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785098851D365ADD00976091 /* MainViewController.swift */; };
 		785098891D365ADD00976091 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 785098871D365ADD00976091 /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0246FDEF213988700074BCAB /* VerticalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSlider.swift; sourceTree = "<group>"; };
+		0246FDF1213989920074BCAB /* SliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		785098801D365ADD00976091 /* BLEDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		785098831D365ADD00976091 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		785098851D365ADD00976091 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -62,11 +66,13 @@
 			children = (
 				785098831D365ADD00976091 /* AppDelegate.swift */,
 				785098851D365ADD00976091 /* MainViewController.swift */,
+				0246FDEF213988700074BCAB /* VerticalSlider.swift */,
 				785098951D365E8E00976091 /* ScanTableViewController.swift */,
 				785098871D365ADD00976091 /* Main.storyboard */,
 				7850988A1D365ADD00976091 /* Assets.xcassets */,
 				7850988C1D365ADD00976091 /* LaunchScreen.storyboard */,
 				7850988F1D365ADD00976091 /* Info.plist */,
+				0246FDF1213989920074BCAB /* SliderViewController.swift */,
 			);
 			path = BLEDemo;
 			sourceTree = "<group>";
@@ -111,10 +117,10 @@
 				TargetAttributes = {
 					7850987F1D365ADD00976091 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = FX9SB387T5;
+						DevelopmentTeam = Y23W28MGVM;
 						DevelopmentTeamName = "AnalogFolk Ltd";
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -154,6 +160,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0246FDF0213988700074BCAB /* VerticalSlider.swift in Sources */,
+				0246FDF2213989920074BCAB /* SliderViewController.swift in Sources */,
 				785098861D365ADD00976091 /* MainViewController.swift in Sources */,
 				785098841D365ADD00976091 /* AppDelegate.swift in Sources */,
 				785098961D365E8E00976091 /* ScanTableViewController.swift in Sources */,
@@ -277,10 +285,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y23W28MGVM;
 				INFOPLIST_FILE = BLEDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = AF.BLEDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = birdyback.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
@@ -290,10 +302,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y23W28MGVM;
 				INFOPLIST_FILE = BLEDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = AF.BLEDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = birdyback.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};

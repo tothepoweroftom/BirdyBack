@@ -38,6 +38,7 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "scanTableCell", for: indexPath)
         let peripheral = peripherals[indexPath.row]
+        
         cell.textLabel?.text = peripheral.name
         
         return cell
