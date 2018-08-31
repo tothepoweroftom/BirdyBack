@@ -21,6 +21,7 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         scanBLEDevices()
+        self.navigationController?.title = "Select Bluno M3"
     }    
     
     // MARK: - Table view data source
