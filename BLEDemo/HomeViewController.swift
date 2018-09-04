@@ -1,149 +1,69 @@
 //
-//  MainViewController.swift
-//  CompassCompanion
+//  HomeViewController.swift
+//  BLEDemo
 //
-//  Created by Rick Smith on 04/07/2016.
-//  Copyright © 2016 Rick Smith. All rights reserved.
+//  Created by Thomas Power on 04/09/2018.
+//  Copyright © 2018 Rick Smith. All rights reserved.
 //
 
 import UIKit
 import CoreBluetooth
 
-class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
+class HomeViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
     var manager:CBCentralManager? = nil
     var mainPeripheral:CBPeripheral? = nil
     var mainCharacteristic:CBCharacteristic? = nil
-    let step:Float=1 // If you want UISlider to snap to steps by 10
-
+    
+    @IBOutlet weak var beltSettingsButton: UIButton!
+    @IBOutlet weak var connectionStatusLabel: UILabel!
     let BLEService = "DFB0"
     let BLECharacteristic = "DFB1"
-    
-    @IBOutlet weak var recievedMessageText: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         manager = CBCentralManager(delegate: self, queue: nil);
-        
-        customiseNavigationBar()
-        addSliders(300, color: UIColor.green)
-        addSliders(380, color: UIColor.red)
-        addSliders(460, color: UIColor.blue)
 
+        print("Home View Loaded")
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
-    func addSliders(_ yPos: Int, color: UIColor) {
-        
-        let mySlider = UISlider(frame:CGRect(x: 10, y: yPos, width: 300, height: 20))
-        mySlider.minimumValue = 0
-        mySlider.maximumValue = 100
-        mySlider.isContinuous = true
-        mySlider.tintColor = color
-        
-        mySlider.addTarget(self, action: #selector(MainViewController.sliderValueDidChange(_:)), for: .valueChanged)
-        
-        let toggle = UISwitch(frame: CGRect(x: Int(mySlider.frame.maxX)+20, y: yPos, width: 20, height: 20))
-        toggle.tintColor = color
-        toggle.addTarget(self, action: #selector(MainViewController.switchStateDidChange(_:)), for: .valueChanged)
-        self.view.addSubview(toggle)
-        self.view.addSubview(mySlider)
-    }
-    
-    func sliderValueDidChange(_ sender:UISlider!)
-    {
-        print("Slider value changed")
-        
-        // Use this code below only if you want UISlider to snap to values step by step
-        let roundedStepValue = round(sender.value / step) * step
-        sender.value = roundedStepValue
-        
-        print("Slider step value \(Int(roundedStepValue))")
-    }
-    
-    
-    func switchStateDidChange(_ sender:UISwitch!)
-    {
-        if (sender.isOn == true){
-            print("UISwitch state is now ON")
-        }
-        else{
-            print("UISwitch state is now Off")
-        }
-    }
-    
-    func customiseNavigationBar () {
-        
-        self.navigationItem.rightBarButtonItem = nil
-        
-        let rightButton = UIButton()
-        
-        if (mainPeripheral == nil) {
-            rightButton.setTitle("Scan", for: [])
-            rightButton.setTitleColor(UIColor.blue, for: [])
-            rightButton.frame = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 60, height: 30))
-            rightButton.addTarget(self, action: #selector(self.scanButtonPressed), for: .touchUpInside)
-        } else {
-            rightButton.setTitle("Disconnect", for: [])
-            rightButton.setTitleColor(UIColor.blue, for: [])
-            rightButton.frame = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 100, height: 30))
-            rightButton.addTarget(self, action: #selector(self.disconnectButtonPressed), for: .touchUpInside)
-        }
-        
-        let rightBarButton = UIBarButtonItem()
-        rightBarButton.customView = rightButton
-        self.navigationItem.rightBarButtonItem = rightBarButton
-        
-    }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        print("Preparing for segue")
         if (segue.identifier == "scan-segue") {
             let scanController : ScanTableViewController = segue.destination as! ScanTableViewController
             
             //set the manager's delegate to the scan view so it can call relevant connection methods
             manager?.delegate = scanController
             scanController.manager = manager
-            
-        }
-        
-        if (segue.identifier == "belt-segue") {
-            let settingsController : SettingsViewController = segue.destination as! SettingsViewController
-            
-            //set the manager's delegate to the scan view so it can call relevant connection methods
-//            manager?.delegate = settingsController
-//            settingsController.manager = manager
-            settingsController.mainPeripheral = mainPeripheral
-            settingsController.mainCharacteristic = mainCharacteristic
-
+            scanController.parentView = self
         }
         
     }
     
-    // MARK: Button Methods
-    @objc func scanButtonPressed() {
+    
+    @IBAction func bluetoothSettingsPressed(_ sender: UIButton) {
+        print("Segue")
         performSegue(withIdentifier: "scan-segue", sender: nil)
     }
     
-    @objc func disconnectButtonPressed() {
-        //this will call didDisconnectPeripheral, but if any other apps are using the device it will not immediately disconnect
-        manager?.cancelPeripheralConnection(mainPeripheral!)
-    }
     
-    @IBAction func sendButtonPressed(_ sender: AnyObject) {
-        let helloWorld = "Hello"
-        let dataToSend = helloWorld.data(using: String.Encoding.utf8)
+    @IBAction func adjustBeltSettings(_ sender: UIButton) {
+        performSegue(withIdentifier: "belt-segue", sender: nil)
+
         
-        if (mainPeripheral != nil) {
-            mainPeripheral?.writeValue(dataToSend!, for: mainCharacteristic!, type: CBCharacteristicWriteType.withoutResponse)
-        } else {
-            print("haven't discovered device yet")
-        }
     }
     
-    // MARK: - CBCentralManagerDelegate Methods    
+//    ------------------------------------------------------------------
+    // MARK: - CBCentralManagerDelegate Methods
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         mainPeripheral = nil
-        customiseNavigationBar()
+        connectionStatusLabel.text = "Not Connected"
         print("Disconnected" + peripheral.name!)
     }
     
@@ -179,7 +99,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-
+        
         //get device name
         if (service.uuid.uuidString == "1800") {
             
@@ -249,12 +169,11 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             if(characteristic.value != nil) {
                 let stringValue = String(data: characteristic.value!, encoding: String.Encoding.utf8)
                 print(stringValue)
-                recievedMessageText.text = stringValue
             }
         }
         
         
     }
     
-}
 
+}

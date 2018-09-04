@@ -13,7 +13,7 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
     
     var peripherals:[CBPeripheral] = []
     var manager:CBCentralManager? = nil
-    var parentView:MainViewController? = nil
+    var parentView:HomeViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()    
@@ -21,8 +21,7 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         scanBLEDevices()
-        self.navigationController?.title = "Select Bluno M3"
-    }    
+    }
     
     // MARK: - Table view data source
     
@@ -77,14 +76,14 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
         self.tableView.reloadData()
     }
     
-//    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : AnyObject], rssi RSSI: NSNumber) {
-//        
-//        if(!peripherals.contains(peripheral)) {
-//            peripherals.append(peripheral)
-//        }
-//        
-//        self.tableView.reloadData()
-//    }
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : AnyObject], rssi RSSI: NSNumber) {
+        
+        if(!peripherals.contains(peripheral)) {
+            peripherals.append(peripheral)
+        }
+        
+        self.tableView.reloadData()
+    }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print(central.state)
@@ -99,8 +98,8 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
         
         //set the manager's delegate view to parent so it can call relevant disconnect methods
         manager?.delegate = parentView
-        parentView?.customiseNavigationBar()
-        
+        parentView?.connectionStatusLabel.text = "Connected to " +  peripheral.name!
+        parentView?.beltSettingsButton.isEnabled = true;
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
         }

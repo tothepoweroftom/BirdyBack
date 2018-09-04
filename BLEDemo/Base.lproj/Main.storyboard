@@ -56,17 +56,16 @@
                     <navigationItem key="navigationItem" id="nko-pp-Oka"/>
                     <connections>
                         <outlet property="recievedMessageText" destination="RzW-4l-oYQ" id="d43-6r-CIj"/>
-                        <segue destination="XZM-Me-sXn" kind="show" identifier="scan-segue" id="gj8-TH-9Lz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wUz-kK-x5v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1021.6" y="205.54722638680661"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="Rwq-ej-TO0">
             <objects>
-                <viewController id="Dch-WT-JYz" sceneMemberID="viewController">
+                <viewController id="Dch-WT-JYz" customClass="HomeViewController" customModule="BLEDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7xa-Vw-jp9"/>
                         <viewControllerLayoutGuide type="bottom" id="lbh-hV-KcC"/>
@@ -96,7 +95,8 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="XZM-Me-sXn" kind="show" id="8pV-hK-s0i"/>
+                                            <action selector="bluetoothSettingsPressed:" destination="sBX-h4-OwA" eventType="touchUpInside" id="Zv8-K3-Qfr"/>
+                                            <action selector="bluetoothSettingsPressed:" destination="Dch-WT-JYz" eventType="touchUpInside" id="ocS-Bi-nCf"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="bluetooth" translatesAutoresizingMaskIntoConstraints="NO" id="uJT-T0-yK8">
@@ -128,7 +128,7 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="nOB-NC-7U1" kind="show" id="7PP-Sy-gYt"/>
+                                            <action selector="adjustBeltSettings:" destination="Dch-WT-JYz" eventType="touchUpInside" id="svG-cK-Nxh"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="controls" translatesAutoresizingMaskIntoConstraints="NO" id="75c-bz-6zy">
@@ -151,6 +151,20 @@
                                     <constraint firstItem="75c-bz-6zy" firstAttribute="leading" secondItem="wdK-lo-LlI" secondAttribute="leading" constant="8" id="w9P-y8-mBE"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not Connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPA-co-hjb">
+                                <rect key="frame" x="16" y="359" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRM-HM-oIF">
+                                <rect key="frame" x="160" y="330" width="54" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.72946082229999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -163,15 +177,22 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eFs-uq-EeX"/>
+                    <connections>
+                        <outlet property="beltSettingsButton" destination="dyy-3q-CB2" id="liU-vI-1iQ"/>
+                        <outlet property="connectionStatusLabel" destination="vPA-co-hjb" id="NPV-5Q-2e4"/>
+                        <segue destination="XZM-Me-sXn" kind="show" identifier="scan-segue" id="24Q-sX-5GZ"/>
+                        <segue destination="nOB-NC-7U1" kind="show" identifier="belt-segue" id="UpO-1A-Q5v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZCV-Q2-yf8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="sBX-h4-OwA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1960.8" y="913.49325337331345"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="HC4-ET-VyX">
             <objects>
-                <viewController id="nOB-NC-7U1" sceneMemberID="viewController">
+                <viewController id="nOB-NC-7U1" customClass="SettingsViewController" customModule="BLEDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NCS-ws-5d6"/>
                         <viewControllerLayoutGuide type="bottom" id="jNV-X0-eBI"/>
@@ -196,19 +217,14 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="minimumTrackTintColor">
                                                 <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nwp-h3-d2E" customClass="VerticalSlider" customModule="BLEDemo" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="20" width="117" height="392"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="maximumTrackTintColor">
-                                                <color key="value" red="1" green="0.093725768556858102" blue="0.15742401488494639" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                                <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="ascending" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="minimumTrackTintColor">
-                                                <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                                <real key="value" value="100"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                <real key="value" value="50"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -224,7 +240,42 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="minimumTrackTintColor">
                                                 <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                                <real key="value" value="100"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                <real key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="81a-Dd-KFe" customClass="VerticalSlider" customModule="BLEDemo" customModuleProvider="target">
+                                        <rect key="frame" x="11" y="20" width="117" height="392"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="ascending" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="maximumTrackTintColor">
+                                                <color key="value" red="1" green="0.093725768560000006" blue="0.15742401489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="minimumTrackTintColor">
+                                                <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                                <real key="value" value="100"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                <real key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="tempSliderChanged:" destination="nOB-NC-7U1" eventType="valueChanged" id="41s-7R-Cmt"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -233,16 +284,25 @@
                                 <rect key="frame" x="51" y="500" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="1" green="0.093725768560000006" blue="0.15742401489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="tempSwitchPressed:" destination="nOB-NC-7U1" eventType="valueChanged" id="O1W-J6-gOc"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOQ-WK-udz">
                                 <rect key="frame" x="164" y="500" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.0" green="0.72946082229999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="pressureSwitchPressed:" destination="nOB-NC-7U1" eventType="valueChanged" id="L4e-Jd-VL8"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aaw-jd-has">
                                 <rect key="frame" x="277" y="500" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.0" green="1" blue="0.16788150090000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="forceSwitchPressed:" destination="nOB-NC-7U1" eventType="valueChanged" id="W4r-X6-cVd"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.01 ˚C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJA-gY-DdH">
                                 <rect key="frame" x="39" y="444" width="70" height="35"/>
@@ -268,6 +328,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <outlet property="forceLabel" destination="DCv-ub-ghv" id="eiF-8j-wOH"/>
+                        <outlet property="pressureLabel" destination="V7z-cG-2AV" id="yZF-y8-SWc"/>
+                        <outlet property="tempSlider" destination="81a-Dd-KFe" id="TIx-qR-n6E"/>
+                        <outlet property="temperatureLabel" destination="FJA-gY-DdH" id="BXv-xi-6eQ"/>
+                        <outlet property="temperatureSwitch" destination="1NN-Mc-UB0" id="3vz-Zy-QRz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yav-vb-ewY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -289,6 +356,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -346,8 +414,5 @@
         <image name="bluetooth" width="64" height="64"/>
         <image name="controls" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="8pV-hK-s0i"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.72946082231406306" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>
