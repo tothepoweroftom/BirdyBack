@@ -89,7 +89,7 @@ import UIKit
     
     @IBInspectable open var value: Float {
         get {
-            return slider.value
+            return (slider.maximumValue - slider.value)
         }
         set {
             slider.setValue(newValue, animated: true)

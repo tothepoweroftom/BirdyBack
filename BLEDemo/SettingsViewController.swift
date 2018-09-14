@@ -15,10 +15,17 @@ class SettingsViewController: UIViewController, CBPeripheralDelegate {
     //    Switches
     @IBOutlet weak var temperatureSwitch: UISwitch!
     @IBAction func tempSwitchPressed(_ sender: UISwitch) {
+        
+        sendMessage(sender.isOn ? "1" : "0")
+
     }
     @IBAction func pressureSwitchPressed(_ sender: UISwitch) {
+        sendMessage(sender.isOn ? "1" : "0")
+
     }
     @IBAction func forceSwitchPressed(_ sender: UISwitch) {
+        sendMessage(sender.isOn ? "1" : "0")
+
     }
     
     //    Labels
@@ -32,10 +39,38 @@ class SettingsViewController: UIViewController, CBPeripheralDelegate {
     @IBOutlet weak var forceSlider: VerticalSlider!
     
    
-    @IBAction @objc func tempSliderChanged(_ sender: VerticalSlider) {
+    @IBAction func tempSliderEditEnd(_ sender: VerticalSlider) {
         sendMessage(String(tempSlider.value))
+        temperatureLabel.text = String(format: "%.2f",tempSlider.value) + " ˚C"
     }
     
+   
+    
+    @IBAction func pressureEditEnd(_ sender: VerticalSlider) {
+        sendMessage(String(pressureSlider.value))
+        pressureLabel.text = String(format: "%.2f",pressureSlider.value) + "Pa"
+    }
+
+    @IBAction func forceEditEnd(_ sender: VerticalSlider) {
+        sendMessage(String(forceSlider.value))
+        forceLabel.text = String(format: "%.2f",forceSlider.value) + "N"
+
+    }
+    
+    @IBAction func tempSliderDidChange(_ sender: VerticalSlider) {
+        temperatureLabel.text = String(format: "%.2f",tempSlider.value) + " ˚C"
+    }
+    
+    
+    
+    @IBAction func pressureDidChange(_ sender: VerticalSlider) {
+        pressureLabel.text = String(format: "%.2f",pressureSlider.value) + "Pa"
+    }
+    
+    @IBAction func forceEditDidChange(_ sender: VerticalSlider) {
+        forceLabel.text = String(format: "%.2f",forceSlider.value) + "N"
+        
+    }
     
     var mainPeripheral:CBPeripheral? = nil
     var mainCharacteristic:CBCharacteristic? = nil
