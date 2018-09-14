@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil);
+        customiseNavigationBar()
 
         print("Home View Loaded")
 
@@ -32,6 +33,28 @@ class HomeViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         // Dispose of any resources that can be recreated.
     }
     
+    func customiseNavigationBar () {
+        
+        self.navigationItem.rightBarButtonItem = nil
+        
+        let rightButton = UIButton()
+        
+        if (mainPeripheral == nil) {
+            rightButton.setTitle("Not Connected", for: [])
+            rightButton.setTitleColor(UIColor.lightGray, for: [])
+            rightButton.frame = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 60, height: 30))
+        } else {
+            rightButton.setTitle("Disconnect", for: [])
+            rightButton.setTitleColor(UIColor.red, for: [])
+            rightButton.frame = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 100, height: 30))
+            rightButton.addTarget(self, action: #selector(self.disconnectButtonPressed), for: .touchUpInside)
+        }
+        
+        let rightBarButton = UIBarButtonItem()
+        rightBarButton.customView = rightButton
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("Preparing for segue")
@@ -42,6 +65,17 @@ class HomeViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             manager?.delegate = scanController
             scanController.manager = manager
             scanController.parentView = self
+        }
+        
+        if (segue.identifier == "belt-segue") {
+            let settingsController : SettingsViewController = segue.destination as! SettingsViewController
+            
+            //set the manager's delegate to the scan view so it can call relevant connection methods
+            //            manager?.delegate = settingsController
+            //            settingsController.manager = manager
+            settingsController.mainPeripheral = mainPeripheral
+            settingsController.mainCharacteristic = mainCharacteristic
+            
         }
         
     }
@@ -57,6 +91,13 @@ class HomeViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         performSegue(withIdentifier: "belt-segue", sender: nil)
 
         
+    }
+    
+    @objc func disconnectButtonPressed() {
+        //this will call didDisconnectPeripheral, but if any other apps are using the device it will not immediately disconnect
+        manager?.cancelPeripheralConnection(mainPeripheral!)
+        mainPeripheral = nil
+        customiseNavigationBar()
     }
     
 //    ------------------------------------------------------------------

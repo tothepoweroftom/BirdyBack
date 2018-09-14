@@ -95,6 +95,7 @@ class ScanTableViewController: UITableViewController, CBCentralManagerDelegate {
         parentView?.mainPeripheral = peripheral
         peripheral.delegate = parentView
         peripheral.discoverServices(nil)
+        parentView?.customiseNavigationBar()
         
         //set the manager's delegate view to parent so it can call relevant disconnect methods
         manager?.delegate = parentView

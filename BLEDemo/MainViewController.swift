@@ -106,16 +106,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             
         }
         
-        if (segue.identifier == "belt-segue") {
-            let settingsController : SettingsViewController = segue.destination as! SettingsViewController
-            
-            //set the manager's delegate to the scan view so it can call relevant connection methods
-//            manager?.delegate = settingsController
-//            settingsController.manager = manager
-            settingsController.mainPeripheral = mainPeripheral
-            settingsController.mainCharacteristic = mainCharacteristic
-
-        }
+   
         
     }
     
@@ -143,12 +134,13 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     // MARK: - CBCentralManagerDelegate Methods    
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         mainPeripheral = nil
-        customiseNavigationBar()
         print("Disconnected" + peripheral.name!)
     }
     
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        print("state")
+
         print(central.state)
     }
     
@@ -188,6 +180,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 if (characteristic.uuid.uuidString == "2A00") {
                     peripheral.readValue(for: characteristic)
                     print("Found Device Name Characteristic")
+                    mainPeripheral = peripheral
                 }
                 
             }
