@@ -1,30 +1,33 @@
 //
 //  SettingsViewController.swift
-//  BLEDemo
+//
 //
 //  Created by Thomas Power on 04/09/2018.
-//  Copyright © 2018 Rick Smith. All rights reserved.
+//  Copyright © 2018 Birdie Back. All rights reserved.
 //
 
 import UIKit
 import CoreBluetooth
 
-class SettingsViewController: UIViewController, CBPeripheralDelegate {
+class SettingsViewController: UIViewController, CBPeripheralDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    @IBOutlet weak var ModePickerView: UIPickerView!
+    
     let BLEService = "DFB0"
     let BLECharacteristic = "DFB1"
     //    Switches
     @IBOutlet weak var temperatureSwitch: UISwitch!
     @IBAction func tempSwitchPressed(_ sender: UISwitch) {
         
-        sendMessage(sender.isOn ? "1" : "0")
+//        sendMessage(sender.isOn ? "1" : "0")
 
     }
     @IBAction func pressureSwitchPressed(_ sender: UISwitch) {
-        sendMessage(sender.isOn ? "1" : "0")
+//        sendMessage(sender.isOn ? "1" : "0")
 
     }
     @IBAction func forceSwitchPressed(_ sender: UISwitch) {
-        sendMessage(sender.isOn ? "1" : "0")
+//        sendMessage(sender.isOn ? "1" : "0")
 
     }
     
@@ -33,42 +36,50 @@ class SettingsViewController: UIViewController, CBPeripheralDelegate {
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var forceLabel: UILabel!
     
-    
+//    Sliders
     @IBOutlet weak var tempSlider: VerticalSlider!
     @IBOutlet weak var pressureSlider: VerticalSlider!
     @IBOutlet weak var forceSlider: VerticalSlider!
     
    
+    
+//    Functions on end editing
     @IBAction func tempSliderEditEnd(_ sender: VerticalSlider) {
-        sendMessage(String(tempSlider.value))
-        temperatureLabel.text = String(format: "%.2f",tempSlider.value) + " ˚C"
+        let message = temperatureCode + String(Int(tempSlider.value))
+        print(message)
+        print(temperatureValues[Int(tempSlider.value)])
+        sendMessage(temperatureCode + String(Int(tempSlider.value)))
+        temperatureLabel.text = String(temperatureValues[Int(tempSlider.value)]) + " ˚C"
     }
     
    
     
     @IBAction func pressureEditEnd(_ sender: VerticalSlider) {
-        sendMessage(String(pressureSlider.value))
-        pressureLabel.text = String(format: "%.2f",pressureSlider.value) + "Pa"
+        let message = pressureCode + String(Int(pressureSlider.value))
+        sendMessage(pressureCode + String(Int(pressureSlider.value)))
+
+        pressureLabel.text = String(pressureValues[Int(pressureSlider.value)]) + "Pa"
     }
 
     @IBAction func forceEditEnd(_ sender: VerticalSlider) {
-        sendMessage(String(forceSlider.value))
-        forceLabel.text = String(format: "%.2f",forceSlider.value) + "N"
+        let message = vibeCode + String(Int(forceSlider.value))
+        sendMessage(vibeCode + String(Int(forceSlider.value)))
+        forceLabel.text = String(vibeValues[Int(forceSlider.value)]) + "N"
 
     }
     
     @IBAction func tempSliderDidChange(_ sender: VerticalSlider) {
-        temperatureLabel.text = String(format: "%.2f",tempSlider.value) + " ˚C"
+//        temperatureLabel.text = String(temperatureValues[Int(tempSlider.value)]) + " ˚C"
     }
     
     
     
     @IBAction func pressureDidChange(_ sender: VerticalSlider) {
-        pressureLabel.text = String(format: "%.2f",pressureSlider.value) + "Pa"
+//        pressureLabel.text = String(format: "%.2f",pressureSlider.value) + "Pa"
     }
     
     @IBAction func forceEditDidChange(_ sender: VerticalSlider) {
-        forceLabel.text = String(format: "%.2f",forceSlider.value) + "N"
+//        forceLabel.text = String(format: "%.2f",forceSlider.value) + "N"
         
     }
     
@@ -76,12 +87,18 @@ class SettingsViewController: UIViewController, CBPeripheralDelegate {
     var mainCharacteristic:CBCharacteristic? = nil
     var manager:CBCentralManager? = nil
     var parentView:HomeViewController? = nil
+    
+    
+//    MODES for mode picker
+    
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tempSlider.value = 10
         print(mainPeripheral)
+        ModePickerView.delegate = self
+        ModePickerView.dataSource = self
         // Do any additional setup after loading the view.
     }
 
@@ -208,6 +225,31 @@ class SettingsViewController: UIViewController, CBPeripheralDelegate {
         
     }
     
+    
+    
+//    PickerView Delegates
+    
+ 
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+   
+            return modes.count
 
-
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        Send Mode Message
+        print(modes[row])
+    
+        sendMessage(modeCode + String(row))
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return modes[row]
+    }
+    
 }

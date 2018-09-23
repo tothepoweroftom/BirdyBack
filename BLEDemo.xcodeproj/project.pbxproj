@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020DF9902157C2B3004CB37F /* SerialComms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020DF98F2157C2B3004CB37F /* SerialComms.swift */; };
 		0246FDF0213988700074BCAB /* VerticalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246FDEF213988700074BCAB /* VerticalSlider.swift */; };
 		02A9DE19213EB9F200A3B642 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A9DE18213EB9F200A3B642 /* HomeViewController.swift */; };
 		02A9DE1B213EC4BE00A3B642 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A9DE1A213EC4BE00A3B642 /* SettingsViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		020DF98F2157C2B3004CB37F /* SerialComms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialComms.swift; sourceTree = "<group>"; };
 		0246FDEF213988700074BCAB /* VerticalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSlider.swift; sourceTree = "<group>"; };
 		02A9DE18213EB9F200A3B642 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		02A9DE1A213EC4BE00A3B642 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				7850988C1D365ADD00976091 /* LaunchScreen.storyboard */,
 				7850988F1D365ADD00976091 /* Info.plist */,
 				02A9DE1A213EC4BE00A3B642 /* SettingsViewController.swift */,
+				020DF98F2157C2B3004CB37F /* SerialComms.swift */,
 			);
 			path = BLEDemo;
 			sourceTree = "<group>";
@@ -116,7 +119,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = "Rick Smith";
+				ORGANIZATIONNAME = "Birdie Back";
 				TargetAttributes = {
 					7850987F1D365ADD00976091 = {
 						CreatedOnToolsVersion = 8.0;
@@ -163,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				020DF9902157C2B3004CB37F /* SerialComms.swift in Sources */,
 				0246FDF0213988700074BCAB /* VerticalSlider.swift in Sources */,
 				02A9DE1B213EC4BE00A3B642 /* SettingsViewController.swift in Sources */,
 				785098861D365ADD00976091 /* MainViewController.swift in Sources */,
@@ -295,7 +299,7 @@
 				INFOPLIST_FILE = BLEDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = birdyback.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = birdieback.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -313,7 +317,7 @@
 				INFOPLIST_FILE = BLEDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = birdyback.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = birdieback.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

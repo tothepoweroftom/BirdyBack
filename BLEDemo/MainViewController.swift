@@ -1,9 +1,5 @@
 //
 //  MainViewController.swift
-//  CompassCompanion
-//
-//  Created by Rick Smith on 04/07/2016.
-//  Copyright © 2016 Rick Smith. All rights reserved.
 //
 
 import UIKit

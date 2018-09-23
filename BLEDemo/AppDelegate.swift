@@ -1,9 +1,6 @@
 //
 //  AppDelegate.swift
-//  BLEDemo
-//
-//  Created by Rick Smith on 13/07/2016.
-//  Copyright © 2016 Rick Smith. All rights reserved.
+//  
 //
 
 import UIKit
