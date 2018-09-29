@@ -12,6 +12,9 @@ import CoreBluetooth
 class SettingsViewController: UIViewController, CBPeripheralDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var ModePickerView: UIPickerView!
+    @IBOutlet weak var tempSwitch: UISwitch!
+    @IBOutlet weak var pressureSwitch: UISwitch!
+    @IBOutlet weak var vibeSwitch: UISwitch!
     
     let BLEService = "DFB0"
     let BLECharacteristic = "DFB1"
@@ -19,16 +22,33 @@ class SettingsViewController: UIViewController, CBPeripheralDelegate, UIPickerVi
     @IBOutlet weak var temperatureSwitch: UISwitch!
     @IBAction func tempSwitchPressed(_ sender: UISwitch) {
         
-//        sendMessage(sender.isOn ? "1" : "0")
+        let tempState = tempSwitch.isOn ? "1" : "0"
+        let pressureState = pressureSwitch.isOn ? "1" : "0"
+        let vibeState = vibeSwitch.isOn ? "1" : "0"
+        buttonState = tempState + pressureState + vibeState
+        let message = buttonStateChanged(buttonState)
+        sendMessage(message!)
+        
+        
 
     }
     @IBAction func pressureSwitchPressed(_ sender: UISwitch) {
-//        sendMessage(sender.isOn ? "1" : "0")
-
+        let tempState = tempSwitch.isOn ? "1" : "0"
+        let pressureState = pressureSwitch.isOn ? "1" : "0"
+        let vibeState = vibeSwitch.isOn ? "1" : "0"
+        buttonState = tempState + pressureState + vibeState
+        buttonStateChanged(buttonState)
+        let message = buttonStateChanged(buttonState)
+        sendMessage(message!)
     }
     @IBAction func forceSwitchPressed(_ sender: UISwitch) {
-//        sendMessage(sender.isOn ? "1" : "0")
-
+        let tempState = tempSwitch.isOn ? "1" : "0"
+        let pressureState = pressureSwitch.isOn ? "1" : "0"
+        let vibeState = vibeSwitch.isOn ? "1" : "0"
+        buttonState = tempState + pressureState + vibeState
+        buttonStateChanged(buttonState)
+        let message = buttonStateChanged(buttonState)
+        sendMessage(message!)
     }
     
     //    Labels

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pZf-xh-s0P">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pZf-xh-s0P">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -231,7 +231,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="125" height="603"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 ˚C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJA-gY-DdH">
-                                                <rect key="frame" x="5" y="426" width="114.5" height="20.5"/>
+                                                <rect key="frame" x="5" y="426" width="115" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -272,7 +272,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1NN-Mc-UB0">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1NN-Mc-UB0">
                                                 <rect key="frame" x="38" y="461" width="51" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="49" id="Dat-bH-RGa"/>
@@ -329,7 +329,7 @@
                                                     <action selector="pressureEditEnd:" destination="nOB-NC-7U1" eventType="touchUpInside" id="0Jz-6O-Iyr"/>
                                                 </connections>
                                             </view>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOQ-WK-udz">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oOQ-WK-udz">
                                                 <rect key="frame" x="38" y="461" width="51" height="31"/>
                                                 <color key="onTintColor" red="0.0" green="0.72946082229999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <connections>
@@ -370,7 +370,7 @@
                                         <rect key="frame" x="250" y="0.0" width="125" height="603"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRR-ow-IjR" customClass="VerticalSlider" customModule="BLEDemo" customModuleProvider="target">
-                                                <rect key="frame" x="47" y="63" width="30" height="349"/>
+                                                <rect key="frame" x="47.5" y="63" width="30" height="349"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="ascending" value="YES"/>
@@ -411,8 +411,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aaw-jd-has">
-                                                <rect key="frame" x="37.5" y="461" width="51" height="31"/>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aaw-jd-has">
+                                                <rect key="frame" x="38" y="461" width="51" height="31"/>
                                                 <color key="onTintColor" red="0.0" green="1" blue="0.16788150090000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <connections>
                                                     <action selector="forceSwitchPressed:" destination="nOB-NC-7U1" eventType="valueChanged" id="W4r-X6-cVd"/>
@@ -440,7 +440,7 @@
                                     <constraint firstItem="9VY-up-II7" firstAttribute="width" secondItem="lyq-i4-zUH" secondAttribute="width" id="f0g-xG-eT5"/>
                                 </constraints>
                             </stackView>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2JQ-I5-J23">
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2JQ-I5-J23">
                                 <rect key="frame" x="0.0" y="524" width="375" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="0a3-Aw-0q6"/>
@@ -464,9 +464,12 @@
                         <outlet property="forceSlider" destination="hRR-ow-IjR" id="Fbs-e7-r1M"/>
                         <outlet property="pressureLabel" destination="V7z-cG-2AV" id="yZF-y8-SWc"/>
                         <outlet property="pressureSlider" destination="fO4-k9-Svn" id="Mwm-hW-lg1"/>
+                        <outlet property="pressureSwitch" destination="oOQ-WK-udz" id="wLy-O8-OvH"/>
                         <outlet property="tempSlider" destination="81a-Dd-KFe" id="TIx-qR-n6E"/>
+                        <outlet property="tempSwitch" destination="1NN-Mc-UB0" id="ZYy-QA-2fe"/>
                         <outlet property="temperatureLabel" destination="FJA-gY-DdH" id="BXv-xi-6eQ"/>
                         <outlet property="temperatureSwitch" destination="1NN-Mc-UB0" id="3vz-Zy-QRz"/>
+                        <outlet property="vibeSwitch" destination="aaw-jd-has" id="FB1-cn-e5W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yav-vb-ewY" userLabel="First Responder" sceneMemberID="firstResponder"/>
